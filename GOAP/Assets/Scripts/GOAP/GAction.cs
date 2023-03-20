@@ -19,6 +19,9 @@ public abstract class GAction : MonoBehaviour
 
     public WorldStates agentBeliefs;
 
+    public GInventory inventory;
+    public WorldStates beliefs;
+
     public bool running = false;
 
     public GAction()
@@ -43,6 +46,9 @@ public abstract class GAction : MonoBehaviour
                 effects.Add(w.key, w.value);
             }
             
+        inventory = this.gameObject.GetComponent<GAgent>().inventory;
+        beliefs = this.gameObject.GetComponent<GAgent>().beliefs;
+
     }
 
     public bool IsAchievable()
@@ -55,6 +61,8 @@ public abstract class GAction : MonoBehaviour
         foreach (KeyValuePair<string, int> p in preconditions)
         {
             if (!conditions.ContainsKey(p.Key))
+                return false;
+            else if (conditions[p.Key] < p.Value)
                 return false;
         }
         return true;

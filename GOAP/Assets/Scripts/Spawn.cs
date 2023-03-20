@@ -7,7 +7,7 @@ public class Spawn : MonoBehaviour
     public GameObject patientPrefab;
     public int numPatients;
     private int i = 0;
-    public float invterval = 0.5f;
+    public float invterval = 3.0f;
     float currentTime = 0;
 
     bool invoked = false;
@@ -39,7 +39,7 @@ public class Spawn : MonoBehaviour
         {
             if (!invoked)
             {
-                Invoke("SpawnPatient", Random.Range(2, 10));
+                Invoke("SpawnPatient", Random.Range(20, 30));
                 invoked = true;
             }
         }

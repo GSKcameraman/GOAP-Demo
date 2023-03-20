@@ -22,13 +22,15 @@ public class GAgent : MonoBehaviour
     public Dictionary<SubGoal, int> goals = new Dictionary<SubGoal, int>();
     public WorldStates beliefs = new WorldStates();
 
+    public GInventory inventory = new GInventory();
+
     GPlanner planner;
     Queue<GAction> actionQueue;
     public GAction currentAction;
     SubGoal currentGoal;
 
     // Start is called before the first frame update
-    public void Start()
+    protected virtual void Start()
     {
         GAction[] acts = this.GetComponents<GAction>();
         foreach (GAction a in acts)
@@ -48,7 +50,8 @@ public class GAgent : MonoBehaviour
     {
         if (currentAction != null && currentAction.running)
         {
-            if (currentAction.agent.hasPath && currentAction.agent.remainingDistance < 1f)
+            float distance = Vector3.Distance(this.transform.position, currentAction.target.transform.position);
+            if (currentAction.agent.hasPath && distance < 2f)
             {
                 if (!invoked)
                 {
@@ -67,7 +70,7 @@ public class GAgent : MonoBehaviour
 
             foreach (KeyValuePair<SubGoal, int> sg in sortedGoals)
             {
-                actionQueue = planner.plan(actions, sg.Key.sgoals, null);
+                actionQueue = planner.plan(actions, sg.Key.sgoals, beliefs);
                 if (actionQueue != null)
                 {
                     currentGoal = sg.Key;
@@ -104,6 +107,11 @@ public class GAgent : MonoBehaviour
                 actionQueue = null;
             }
 
+        }
+
+        if (goals.Count <= 0)
+        {
+            Destroy(this.gameObject);
         }
 
     }
