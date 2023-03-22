@@ -1048,7 +1048,6 @@ GameObject:
   - component: {fileID: 5150448035343089414}
   - component: {fileID: 4655776176326162745}
   - component: {fileID: 156335539}
-  - component: {fileID: 786611416199756130}
   - component: {fileID: 8203525299992327591}
   m_Layer: 0
   m_Name: Nurse
@@ -1189,19 +1188,6 @@ MonoBehaviour:
   actions: []
   currentAction: {fileID: 0}
   startEnergy: 5
---- !u!114 &786611416199756130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618188073631541129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56a8c5873a40498f9f97550fc5588c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisAgent: {fileID: 156335539}
 --- !u!54 &8203525299992327591
 Rigidbody:
   m_ObjectHideFlags: 0
